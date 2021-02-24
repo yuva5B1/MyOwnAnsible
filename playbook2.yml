@@ -1,0 +1,20 @@
+---
+- name: create file or directory if the file or directory is not available
+  hosts: all
+  tasks:
+   - name: check if the directory or folder is present or not
+     stat: 
+      path: /tmp/file
+     register: a11
+   - name: display output of the above module
+     debug:
+      var: a11
+   - name: create file if file or directory is not present
+     file:
+      name: /tmp/file
+      state: directory
+     when: a11.stat.exists==false
+
+
+
+...

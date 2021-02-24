@@ -1,0 +1,217 @@
+
+PLAY [install Jenkins package in Jenkins server] ***********************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************
+ok: [172.31.46.175]
+
+TASK [install different packages] **************************************************************************************************************************************************************
+ok: [172.31.46.175] => (item={'a': 'openjdk-8-jdk', 'b': 'present', 'c': True})
+ok: [172.31.46.175] => (item={'a': 'git', 'b': 'present', 'c': False})
+ok: [172.31.46.175] => (item={'a': 'maven', 'b': 'present', 'c': True})
+
+TASK [check if jenkins.war file is present or not] *********************************************************************************************************************************************
+ok: [172.31.46.175]
+
+TASK [display above module output] *************************************************************************************************************************************************************
+ok: [172.31.46.175] => {
+    "aa": {
+        "changed": false,
+        "failed": false,
+        "stat": {
+            "atime": 1614050870.7047067,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 131424,
+            "charset": "binary",
+            "checksum": "591d9ac9a4ad7f48b9b4401b35098bf2c8293e82",
+            "ctime": 1614050870.7007067,
+            "dev": 51713,
+            "device_type": 0,
+            "executable": false,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 271650,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "application/zip",
+            "mode": "0644",
+            "mtime": 1614050870.6007051,
+            "nlink": 1,
+            "path": "/home/ubuntu/jenkins.war",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 67287029,
+            "uid": 0,
+            "version": "514009231",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": false
+        }
+    }
+}
+
+TASK [delete if file is not present] ***********************************************************************************************************************************************************
+[WARNING]: Consider using the file module with state=absent rather than running 'rm'.  If you need to use command because file is insufficient you can add 'warn: false' to this command task
+or set 'command_warnings=False' in ansible.cfg to get rid of this message.
+changed: [172.31.46.175]
+
+TASK [download file from Jenkins site] *********************************************************************************************************************************************************
+changed: [172.31.46.175]
+
+PLAY [install tomcat9 in servers] **************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************
+ok: [172.31.34.76]
+ok: [172.31.41.176]
+
+TASK [install tomcat9 packages] ****************************************************************************************************************************************************************
+ok: [172.31.41.176] => (item={'a': 'tomcat9', 'b': 'present', 'c': True})
+ok: [172.31.34.76] => (item={'a': 'tomcat9', 'b': 'present', 'c': True})
+ok: [172.31.41.176] => (item={'a': 'tomcat9-admin', 'b': 'present', 'c': True})
+ok: [172.31.34.76] => (item={'a': 'tomcat9-admin', 'b': 'present', 'c': True})
+
+TASK [delete tomcat-users file if it present] **************************************************************************************************************************************************
+ok: [172.31.34.76]
+ok: [172.31.41.176]
+
+TASK [display above module output] *************************************************************************************************************************************************************
+ok: [172.31.34.76] => {
+    "ab": {
+        "changed": false,
+        "failed": false,
+        "stat": {
+            "atime": 1614050877.5986683,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 8,
+            "charset": "us-ascii",
+            "checksum": "811f9291d36b14de06b9e2ec036b6ce40f24e415",
+            "ctime": 1614050877.5986683,
+            "dev": 51713,
+            "device_type": 0,
+            "executable": false,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 256210,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/plain",
+            "mode": "0644",
+            "mtime": 1614050877.1706712,
+            "nlink": 1,
+            "path": "/etc/tomcat9/tomcat-users.xml",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 107,
+            "uid": 0,
+            "version": "2022118144",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": false
+        }
+    }
+}
+ok: [172.31.41.176] => {
+    "ab": {
+        "changed": false,
+        "failed": false,
+        "stat": {
+            "atime": 1614050877.5975723,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 8,
+            "charset": "us-ascii",
+            "checksum": "811f9291d36b14de06b9e2ec036b6ce40f24e415",
+            "ctime": 1614050877.5975723,
+            "dev": 51713,
+            "device_type": 0,
+            "executable": false,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 257365,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/plain",
+            "mode": "0644",
+            "mtime": 1614050877.2015746,
+            "nlink": 1,
+            "path": "/etc/tomcat9/tomcat-users.xml",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 107,
+            "uid": 0,
+            "version": "426803618",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": false
+        }
+    }
+}
+
+TASK [remove if file is present] ***************************************************************************************************************************************************************
+changed: [172.31.34.76]
+changed: [172.31.41.176]
+
+TASK [copy tomcat-users.xml file] **************************************************************************************************************************************************************
+changed: [172.31.41.176]
+changed: [172.31.34.76]
+
+PLAY RECAP *************************************************************************************************************************************************************************************
+172.31.34.76               : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+172.31.41.176              : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+172.31.46.175              : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

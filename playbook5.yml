@@ -1,0 +1,11 @@
+---
+- name: copy tomcat9 users file in to servers
+  hosts: servers
+  tasks:
+   - name: copy file file
+     copy:
+      src: tomcat-users.xml
+      dest: /etc/tomcat9
+
+
+...

@@ -1,0 +1,28 @@
+---
+- name: uninstall existing packages
+  hosts: Jenkins
+  tasks:
+   - name: uninstall packages
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+      - {a: openjdk-8-jdk,b: absent,c: no}
+      - {a: git, b: absent,c: no}
+      - {a: maven,b: absent,c: no}
+   - name: delete file from location
+     stat:
+      path: /home/ubuntu/jenkins.war
+     register: filelocation
+   - name: display output of the above module
+     debug:
+      var: filelocation
+   - name: delete if the file is present
+     command: rm jenkins.war
+     when: filelocation.stat.exists==true
+
+   
+
+
+...

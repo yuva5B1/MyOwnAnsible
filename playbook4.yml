@@ -1,0 +1,35 @@
+---
+- name: install Jenkins in Jenkins server
+  hosts: Jenkins
+  tasks:
+   - name: install different packages
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+      - {a: openjdk-8-jdk, b: present, c: yes}
+      - {a: git, b: present, c: yes}
+      - {a: maven, b: present, c: yes}
+   - name: copy file from website  
+     get_url:
+      url: https://get.jenkins.io/war-stable/2.263.4/jenkins.war
+      dest: /home/ubuntu
+- name: install tomcat8 s/w in servers
+  hosts: servers
+  tasks:
+   - name: install tomcat9
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+      - {a: tomcat9,b: present,c: yes}
+      - {a: tomcat9-admin,b: present,c: yes}
+   - name: copy tomcat-users.xml file
+     copy:
+      src: tomcat-users.xml
+      dest: /etc/tomcat9
+
+
+...

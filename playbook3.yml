@@ -1,0 +1,19 @@
+---
+- name: check file or directory is present or not
+  hosts: all
+  tasks:
+   - name: check file or directory
+     stat: 
+      path: /tmp/files1
+     register: file
+   - name: dislay output of the above module
+     debug:
+      var: file
+   - name: create file if file is not present
+     file:
+      name: /tmp/files1
+      state: touch
+     when: file.stat.exists==false
+
+
+...
