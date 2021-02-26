@@ -1,0 +1,30 @@
+---
+- name: Implementing Handlers
+  hosts: all
+  tasks:
+   - name: installing apache2
+     apt:
+      name: apache2
+      state: present
+      update_cache: yes
+     notify: check url response
+   - name: edit index.html file
+     copy:
+      content: "Hello world to Yuvaraj Home page\n"
+      dest: /var/www/html/index.html
+     notify: restart apache2
+  handlers:
+   - name: restart apache2
+     service:
+      name: apache2
+      state: restarted
+   - name: check url response
+     uri:
+      url: "{{item}}"
+      status_code: 200
+     with_items:
+      - http://3.18.214.238:8080
+      - http://172.31.41.176:8080
+
+
+...

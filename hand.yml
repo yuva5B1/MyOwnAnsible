@@ -1,0 +1,28 @@
+---
+- name: implementing handlers
+  hosts: all
+  tasks:
+   - name: installing apache2
+     apt:
+      name: apache2
+      state: absent
+      update_cache: no
+     notify: check URL status
+   - name: edit index.html content
+     copy:
+      content: "welcome to Hello world is Yuvaraj\n"
+      dest: /var/www/html/index.html
+     nofify: restart apache2
+  handlers:
+   - name: restart apache2
+     service:
+      name: apache2
+      state: restarted
+   - name: check URL status
+     uri:
+      url: "{{item}}"
+     with_items:
+      - http://3.18.214.238:/8080
+      - http://3.139.99.7:/8080
+
+...
