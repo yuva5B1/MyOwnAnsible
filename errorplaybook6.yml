@@ -1,0 +1,28 @@
+---
+- name: installing different versions of tomcat in managed nodes
+  hosts: all
+  tasks:
+   - block:
+      - name: install tomcat8
+        apt:
+         name: tomcat8
+         state: present
+         update_cache: yes
+     rescue:
+      - name: install tomcat9
+        apt:
+         name: tomcat9
+         state: present
+         update_cache: yes
+     always:
+      - name: check URL status
+        uri:
+         url: "{{item}}"
+         status_code: 200
+        with_items:
+         - http://18.217.25.125:8080
+         - http://18.216.224.218:8080
+
+
+
+...

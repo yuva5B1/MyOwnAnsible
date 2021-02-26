@@ -1,0 +1,17 @@
+---
+- name: installing apache2 on ubuntu and yum module
+  hosts: all
+  tasks:
+   - block:
+      - name: install apache2 in ubuntu apt module
+        apt:
+         name: apache2
+         state: absent
+         update_cache: no
+     rescue:
+      - name: install apache2 using yum module
+        yum:
+         name: httpd
+         state: present
+
+...
