@@ -1,0 +1,53 @@
+---
+- name: perform ci-cd stages
+  hosts: Jenkins
+  tasks:
+   - name: install required softwares
+     apt:
+      name: "{{item}}"
+      state: present
+      update_cache: yes
+     with_items:
+      - openjdk-8-jdk
+      - git
+      - maven
+   - name: continous download
+     git:
+      repo: https://github.com/intelliqittrainings/maven.git
+      dest: /home/ubuntu/dev
+   - name: build the code
+     shell: cd /home/ubuntu/dev; mvn package
+   - name: fetch the artifact from dev server
+     fetch:
+      src: /home/ubuntu/dev/webapp/target/webapp.war
+      dest: /tmp
+- name: QA and Prod server setup
+  hosts: qaserver
+  tasks:
+   - name: install tomcat9 in QA server
+     apt:
+      name: "{{item}}"
+      state: present
+      update_cache: yes
+     with_items:
+      - tomcat9
+      - tomcat9-admin
+      - git
+      - openjdk-8-jdk
+   - name: copy artificat in qa server
+     copy:
+      src: /tmp/172.31.46.175/home/ubuntu/dev/webapp/target
+      dest: /var/lib/tomcat9/webapps/qaenv.war
+   - name: download selenium scripts
+     git:
+      repo: https://github.com/intelliqittrainings/FunctionalTesting.git
+      dest: /home/ubuntu/qa
+   - name: execute the selenium scripts
+     shell: java -jar /home/ubuntu/qa/testing.jar
+...
+
+    
+     
+
+
+...
