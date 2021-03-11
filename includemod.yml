@@ -1,0 +1,11 @@
+---
+- name: implementing include child module
+  apt:
+   name: "{{item}}"
+   state: present
+   update_cache: yes
+  with_items:
+   - git
+   - maven
+   
+...

@@ -1,0 +1,13 @@
+---
+- name: install and configure tomcat9
+  hosts: all
+  tasks:
+   - name: call multiple child books
+     include: "{{item}}"
+     with_items:
+      - newincludech1.yml
+      - newincludech2.yml
+      - newincludech3.yml
+      - newincludech4.yml
+
+...

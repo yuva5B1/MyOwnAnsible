@@ -1,0 +1,8 @@
+---
+- name: implementing parent laybook
+  hosts: all
+  tasks:
+   - name: call child play book
+     include: includemod.yml 
+
+...

@@ -1,0 +1,8 @@
+---
+- name: copy tomcat_users file
+  copy:
+   src: tomcat-users.xml
+   dest: /etc/tomcat9
+
+
+...

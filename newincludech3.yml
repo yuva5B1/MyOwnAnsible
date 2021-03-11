@@ -1,0 +1,9 @@
+---
+- name: change port number of jenkins
+  replace:
+   regexp: 8080
+   replace: 8081
+   path: /etc/tomcat9/server.xml
+
+
+...
