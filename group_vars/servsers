@@ -1,0 +1,6 @@
+a: apache2
+b: present
+c: yes
+d: /home/ubuntu/playbooks/index.html
+e: /var/www/html
+f: restarted

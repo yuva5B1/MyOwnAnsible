@@ -1,0 +1,8 @@
+---
+- name: install apache2 s/w
+  apt:
+   name: "{{a}}"
+   state: "{{b}}"
+   update_cache: "{{c}}"
+
+...

@@ -1,0 +1,12 @@
+---
+- name: install apache2 s/w and configure apache2
+  hosts: all
+  tasks:
+   - name: call multiple playbooks
+     include: "{{item}}"
+     with_items:
+      - install_apache2.yml
+      - edit_html.yml
+      - restart_apache.yml 
+
+...

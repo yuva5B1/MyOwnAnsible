@@ -1,0 +1,7 @@
+---
+- name: enditindex.html content
+  copy:
+   src: "{{d}}"
+   dest: "{{e}}"
+
+...
